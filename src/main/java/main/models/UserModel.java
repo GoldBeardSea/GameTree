@@ -35,7 +35,7 @@ public class UserModel {
     public UserModel(String name, String login, String password, String bio) {
         this.name = name;
         this.login = login;
-        this.passhash = password;
+        this.passhash = BCrypt.hashpw(password, BCrypt.gensalt(12));
         this.wins = 0;
         this.losses = 0;
         this.bio = bio;
