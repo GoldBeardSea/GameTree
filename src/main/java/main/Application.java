@@ -65,6 +65,6 @@ public class Application {
         List<UserModel> users = userDatabaseRepository.findAll();
         Collections.sort(users);
         model.addAttribute("users", users);
-        return "leaderboards";
+        return "leaderboard";
     }
 }
