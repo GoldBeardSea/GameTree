@@ -1,7 +1,7 @@
-package main;
+package server;
 
-import main.models.UserModel;
-import main.repositories.UserDatabaseRepository;
+import server.models.UserModel;
+import server.repositories.UserDatabaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
