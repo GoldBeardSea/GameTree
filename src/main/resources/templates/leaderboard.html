@@ -31,6 +31,8 @@
             <td th:text="${users.losses}"></td>
             <td th:text="${users.ties}"></td>
             <td th:text="(${users.wins} + ${users.losses} + ${users.ties})"></td>
+            <td th:text="${users.wins} div (${users.wins} + ${users.losses} + ${users.ties})"></td>
+
         </tr>
     </table>
 </div>
