@@ -1,10 +1,14 @@
-package Tree;
+package main.game.Tree;
 
 public class SeptinaryTree {
 
     private TreeNode root;
     public TreeNode getRoot(){
         return root;
+    }
+
+    public void setroot(TreeNode node){
+        this.root=node;
     }
 
     public void add(int column) {
