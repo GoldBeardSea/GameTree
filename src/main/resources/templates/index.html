@@ -1,10 +1,54 @@
-<html xmlns:th="http://ww.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>GameTree</title>
     <!--<link rel="stylesheet" href="/styles/main.css">-->
 </head>
 <body>
+<p th:text="'The current time is: ' + ${currenttime}" />
 <div id="main">
     <h1>Game Tree Landing Index</h1>
+    <a href="/private/secret.html">Get to gameboard</a>
+    <h2>Login</h2>
+    <form action="/auth/login" method="POST">
+        <div>Login: <input name="login" /></div>
+        <div>Password: <input name="password" type="password" /></div>
+        <input type="submit" />
+    </form>
+
+    <h2>Register</h2>
+    <form action="/auth/register" method="POST">
+        <div>Username: <input name="username" /></div>
+        <div>Login: <input name="login" /></div>
+        <div>Password: <input name="password" type="password" /></div>
+
+        <p>Bio</p>
+        <div>
+            <textarea name="bio" rows="4" cols="80"></textarea>
+        </div>
+
+        <input type="submit" />
+    </form>
+</div>
+<div>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Ties</th>
+        </tr>
+        <tr th:each="users : ${users}">
+            <td th:text="${users.name}"></td>
+            <td th:text="${users.wins}"></td>
+            <td th:text="${users.losses}"></td>
+            <td>Ties will go here</td>
+        </tr>
+    </table>
+</div>
+<div>
+    <h1>Logout</h1>
+    <form action="/auth/logout" method="POST">
+        <input type="submit" />
+    </form>
 </div>
 </body>
