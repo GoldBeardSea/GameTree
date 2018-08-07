@@ -73,17 +73,17 @@ public class AuthController {
         HttpSession session = request.getSession();
         session.setAttribute("loggedin", false);
 
-        String username = (String) session.getAttribute("username");
+        String login = (String) session.getAttribute("login");
         boolean isLoggedIn = (boolean) session.getAttribute("loggedin");
         if (!isLoggedIn) {
-            username = "user";
-            model.addAttribute("username", "user");
+            login = "login";
+            model.addAttribute("login", "login");
         }
 
-        if (username != null) {
-            model.addAttribute("username", username);
+        if (login != null) {
+            model.addAttribute("login", login);
         }
-        System.out.println(session.getId() + " " + username);
+        System.out.println(session.getId() + " " + login);
         return new ModelAndView("loggedout");
     }
 }
