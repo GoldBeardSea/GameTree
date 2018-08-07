@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/auth")
@@ -38,23 +39,31 @@ public class AuthController {
     ) {
         ModelAndView mv = new ModelAndView();
 
-//        UserModel user = UserModel;
-//        if (user == null) {
-//            mv.setViewName("loginerror");
-//            mv.addObject("error", "Username not found. Choose another.");
-//        } else {
-//            boolean isCorrectPassword = user.checkPassword(password);
-//            if (isCorrectPassword) {
-//                mv.setViewName("loggedin");
-//                mv.addObject("login", login);
-//
-//                HttpSession session = request.getSession();
-//                session.setAttribute("loggedin", true);
-//            } else {
-//                mv.setViewName("loginerror");
-//                mv.addObject("error", "Wrong password. Try again.");
-//            }
-//        }
+        UserModel user = null;
+        List<UserModel> userList = userDB.findAll();
+        for (int i = 0; i < userList.size(); i++) {
+            UserModel userIterator = userList.get(i);
+            if (userIterator.login.equals(login)) {
+                user = userIterator;
+                System.out.println("We're here " + user.login);
+            }
+        }
+        if (user == null) {
+            mv.setViewName("loginerror");
+            mv.addObject("error", "Login not found. Choose another.");
+        } else {
+            boolean isCorrectPassword = user.checkPassword(password);
+            if(isCorrectPassword) {
+                mv.setViewName("loggedin");
+                mv.addObject("login", login);
+
+                HttpSession session = request.getSession();
+                session.setAttribute("loggedin", true);
+            } else {
+                mv.setViewName("loginerror");
+                mv.addObject("error", "Wrong password. Try again.");
+            }
+        }
 
         return mv;
     }
