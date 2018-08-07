@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "userdatabase")
-public class UserModel {
+public class UserModel implements Comparable<UserModel> {
     @Id
     @GeneratedValue
     @SequenceGenerator(name = "user-database-generator")
@@ -44,5 +44,13 @@ public class UserModel {
     public boolean checkPassword(String attempt) {
         boolean result = BCrypt.checkpw(attempt, this.passhash);
         return result;
+    }
+
+    @Override
+    // return -1 if this is less than the other one
+    // return  0 if these two things are equal
+    // return  1 if this is greater than the other one
+    public int compareTo(UserModel o) {
+        return o.wins - this.wins;
     }
 }

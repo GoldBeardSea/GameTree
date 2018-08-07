@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"><html lang="en">
 <head>
     <meta>
     <title>Leaderboard</title>
@@ -14,6 +13,23 @@
         <tr><td><a id="Play" href="">Play</a></td></tr>
         </tr> <td><a id="Leaderboard" href="">Leaderboards</a></td></tr>
 
+    </table>
+</div>
+
+<div>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Ties</th>
+        </tr>
+        <tr th:each="users : ${users}">
+            <td th:text="${users.name}"></td>
+            <td th:text="${users.wins}"></td>
+            <td th:text="${users.losses}"></td>
+            <td>Ties will go here</td>
+        </tr>
     </table>
 </div>
 
