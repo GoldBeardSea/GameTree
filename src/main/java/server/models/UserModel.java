@@ -1,6 +1,5 @@
-package main.models;
+package server.models;
 
-import main.pojos.UserPojo;
 import org.mindrot.jbcrypt.BCrypt;
 import javax.persistence.*;
 
@@ -16,6 +15,7 @@ public class UserModel implements Comparable<UserModel> {
     public String passhash;
     public int wins;
     public int losses;
+    public int ties;
     public String bio;
 
 //    public UserModel(String name, String password) {
@@ -38,7 +38,9 @@ public class UserModel implements Comparable<UserModel> {
         this.passhash = BCrypt.hashpw(password, BCrypt.gensalt(12));
         this.wins = 0;
         this.losses = 0;
+        this.ties = 0;
         this.bio = bio;
+
     }
 
     public boolean checkPassword(String attempt) {

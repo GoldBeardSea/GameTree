@@ -1,4 +1,4 @@
-package main.pojos;
+package server.pojos;
 
 public class UserPojo {
     public Long id;
