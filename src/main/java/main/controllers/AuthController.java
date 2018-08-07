@@ -23,11 +23,22 @@ public class AuthController {
     @PostMapping("/register")
     public ModelAndView register(@RequestParam String username, String login, @RequestParam String password,
                                  @RequestParam String bio) {
-        UserModel user = new UserModel(username, login, password, bio);
-        userDB.save(user);
+
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("loggedin");
-        mv.addObject("login", login);
+        List<UserModel> userList = userDB.findAll();
+        for (int i = 0; i < userList.size(); i++) {
+            UserModel userIterator = userList.get(i);
+            if (userIterator.login.equals(login)) {
+                mv.setViewName("loginerror");
+                mv.addObject("error", "Sorry, that username already exists. Choose another.");
+            } else {
+                UserModel user = new UserModel(username, login, password, bio);
+                userDB.save(user);
+                mv.setViewName("loggedin");
+                mv.addObject("login", login);
+            }
+
+        }
         return mv;
     }
 
