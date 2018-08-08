@@ -14,12 +14,14 @@ public class GameController {
     @GetMapping("/")
     @ResponseBody
     public int[][] game (){
+        System.out.println("Hello");
         return server.game.GameEngine.gameArray;
     }
 
     @PostMapping("/")
     public ModelAndView newmove (HttpServletRequest request,
                                  @RequestParam int column){
+        System.out.println("Post Map Check");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("play");
         server.game.GameMethods.MakeMove(column, server.game.GameEngine.gameArray);
