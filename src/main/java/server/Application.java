@@ -88,8 +88,6 @@ public class Application {
 
     @GetMapping("/play")
     public ModelAndView game() {
-
-
         ModelAndView mv = new ModelAndView();
         mv.setViewName("play");
         mv.addObject("gameArray", GameEngine.gameArray);
@@ -98,13 +96,13 @@ public class Application {
     }
 
     @PostMapping("/play")
-    public ModelAndView newmove(HttpServletRequest request,
+    @ResponseBody
+    public int[][] newmove(HttpServletRequest request,
                                 @RequestParam int column) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("play");
         server.game.GameMethods.MakeMove(column, server.game.GameEngine.gameArray);
         GameEngine.computermove = !GameEngine.computermove;
         System.out.println(column);
-        return mv;
+        return GameEngine.gameArray;
     }
 }
