@@ -31,7 +31,9 @@ public class AuthController {
             if (userIterator.login.equals(login)) {
                 mv.setViewName("loginerror");
                 mv.addObject("error", "Sorry, that username already exists. Choose another.");
-            } else {
+                return mv;
+            }
+            if (i == userList.size() - 1) {
                 UserModel user = new UserModel(username, login, password, bio);
                 userDB.save(user);
                 mv.setViewName("loggedin");

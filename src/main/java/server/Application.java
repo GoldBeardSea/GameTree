@@ -27,7 +27,7 @@ public class Application {
     }
 
     @GetMapping("/")
-    public String homepage(HttpServletRequest request, Model model) {
+    public String index(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         String login = (String) session.getAttribute("login");
         System.out.println(session.getId() + " " + login);
@@ -67,4 +67,20 @@ public class Application {
         model.addAttribute("users", users);
         return "leaderboard";
     }
+
+    @GetMapping("/homepage")
+    public String homepage(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String login = (String) session.getAttribute("login");
+        System.out.println(session.getId() + " " + login);
+        if (session.getAttribute("loggedin") == null) {
+            model.addAttribute("login", "user");
+        }
+        if (login != null) {
+            model.addAttribute("login", login);
+        }
+        System.out.println("hit home controller");
+        return "homepage";
+    }
+
 }
