@@ -2,8 +2,8 @@ var table = document.getElementById("table");
 table.addEventListener("click", tableclicked);
 
 function tableclicked(event) {
-  let id = event.target.id;
-  let column = 0
+  let id = event.target.parentElement.id;
+  let column = id.charAt(1)-1;
   console.log(column);
 
   $.ajax('http://localhost:8080/play?' + $.param({column: column}), {
