@@ -29,6 +29,25 @@
 
     <div class="container">
 
+        <form class="form-signin" action="/auth/login" method="POST">
+            <h2 class="form-signin-heading">Sign in</h2>
+            <label class="sr-only">Username</label>
+            <input type="username" id="username" class="form-control" placeholder="Username" name="username" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+
+        <form class="form-signin" action="/auth/register" method="POST">
+            <h2 class="form-signin-heading">Register</h2>
+            <label class="sr-only">Username</label>
+            <input type="username"  class="form-control" placeholder="New Username" name="username" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password"  class="form-control" placeholder="New Password" name="password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
+
+
 
     </div>
 
