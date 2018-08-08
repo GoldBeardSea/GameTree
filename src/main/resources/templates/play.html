@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Play</title>
@@ -67,6 +66,36 @@
         </tr>
     </table>
 </div>
-<script src ="../static/play.js" type="text/javascript"></script>
 </body>
+<script th:inline="javascript">
+
+var gameArray = [[${gameArray}]];
+var table = document.getElementById("table");
+table.addEventListener("click", tableclicked);
+
+function tableclicked(event) {
+  let id = event.target.id;
+  let column = id.charAt(1) - 1;
+  console.log(id);
+}
+
+function drawboard(board) {
+  // board is a [6][7] array of integers.
+  for (let row = 0; row < 6; row++) {
+    for (let column = 0; column < 7; column++) {
+      let string = "c" + (column + 1) + "r" + (row + 1);
+
+      let newtd = document.getElementById(string);
+
+      if (board[row][column] === 1) {
+        newtd.style.backgroundColor="red";
+      } else if (board[row][column] === -1) {
+        newtd.style.backgroundColor="yellow";
+      }
+    }
+  }
+}
+
+drawboard(gameArray)
+</script>
 </html>
