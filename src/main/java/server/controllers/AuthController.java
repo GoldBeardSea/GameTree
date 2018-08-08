@@ -41,7 +41,7 @@ public class AuthController {
             }
 
         }
-        return mv;
+        return new ModelAndView("redirect:/index");
     }
 
     @PostMapping("/login")

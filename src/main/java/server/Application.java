@@ -29,7 +29,7 @@ public class Application {
 
     }
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String index(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         String login = (String) session.getAttribute("login");
