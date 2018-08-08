@@ -2,57 +2,86 @@ package main.game;
 
 import main.game.Tree.SeptinaryTree;
 import main.game.Tree.TreeNode;
-//import org.apache.commons.lang3.SerializationUtils;
+import main.pojos.ReturnTree;
+import org.apache.commons.lang3.SerializationUtils;
+import java.util.HashSet;
+
 
 
 public class DFS {
     public static void main(String[] args) {
         int [][] ga = {
                 {0,0,1,1,1,0,0},
+                {0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0}
         };
 
-//        findmove(ga);
+        findmove(ga);
     }
 
     public static int findmove(int[][]gameArray){
-        SeptinaryTree logictree = new SeptinaryTree();
+        SeptinaryTree gametree = new SeptinaryTree();
         TreeNode root = new TreeNode();
-        logictree.setroot(root);
-        int column = buildtree(gameArray,logictree.getRoot(),-1);
+        gametree.setroot(root);
+        ReturnTree data = new ReturnTree();
+        data.path="";
+        data.hash = new HashSet<>();
+        data.depth=3;
+        data = buildtree(gameArray, gametree.getRoot(), data);
+        int column = data.column;
+        System.out.println("Hash Size: " + data.hash.size());
         return column;
     }
 
-    private static int buildtree(int[][]gameArray, TreeNode node, int depth){
+    private static ReturnTree buildtree(int[][]gameArray, TreeNode node, ReturnTree data){
+        data.depth ++;
 
-        //  Array of future nodes to be appended to tree.   Set up to be for-loop iterable
-        TreeNode[] nodearray = {node.a, node.b, node.c, node.d, node.e, node.f, node.g};
+        if (data.depth < GameEngine.plydepth) {
+            //  If we're below plydepth, we keep drilling down to brute force all the possibilities.
+            node.addchildren();
 
-        depth++;
-        if (depth < GameEngine.plydepth) {
 
-            //  For each node, create the next node, and wire it up to our tree.
 
-            for (int i = 0; i < nodearray.length; i++) {
-                //  Create the next node, attach it to the tree.
-                TreeNode nextnode = new TreeNode();
-                nodearray[i] = nextnode;
+            //  An array of the children nodes, to conveniently iterate across.
+            TreeNode[] arrayOfNodes = {node.a, node.b, node.c, node.d, node.e, node.f, node.g};
 
-                //  Copy the path so we can reconstruct the moves that got us here.
-                nextnode.path = node.path;
-                nextnode.path.add(i);
+            for (int i =0; i < arrayOfNodes.length; i++) {
+                // grab a node from the array.
+                TreeNode thisnode = arrayOfNodes[i];
 
-                //  Recursively build out the tree
-                buildtree(gameArray, nextnode, depth);
+                // deep clone the game array, and make a move, corresponding to the tree
+                // node that we're on.
+                int[][] temp = SerializationUtils.clone(gameArray);
+                if (i!=0) {
+                    data.path = data.path.substring(0,data.path.length()-1);
+                }
 
+                data.path +=i;
+
+                for (int j =0; j < data.path.length(); j++){
+                    System.out.println(data.path.charAt(j));
+                }
+                System.out.println("//////////////////////////");
+
+                temp = GameMethods.MakeMove(i, temp);
+
+                //  Check the hash-set to see if our new-cloned game aray is inside.   If so,
+                // we can mark this node as terminal and ignore it.  If not, we recur on the node
+                // to hit it's children.
+                if (data.hash.contains(temp)) {
+//                    thisnode.isterminal = true;
+                    System.out.println("found a terminal node");
+                } else {
+                    data.hash.add(temp);
+                    buildtree(temp, thisnode, data);
+                }
             }
-        } else{
-            //  If depth >= Gamengine.plydepth, we're at our targeted search depth.
-            //  Each node at this depth is a leaf, and it's time for us to analyze.
-
-
+        } else { //  triggered when data.depth >= ply-depth, meaning that we're at
+            // our target depth, and it's time to analyze each node.
         }
-
-        return 2;
+        return data;
     }
 }

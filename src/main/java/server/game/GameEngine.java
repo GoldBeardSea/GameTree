@@ -6,7 +6,6 @@ import main.game.Tree.SeptinaryTree;
 public class GameEngine {
 
     //  Initialize decision tree and game array.
-    SeptinaryTree gametree = new SeptinaryTree();
     public static int[][] gameArray = GameMethods.newBoard();
     static boolean computermove = false;
     final static int plydepth = 6;

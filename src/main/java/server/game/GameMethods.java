@@ -15,14 +15,14 @@ public class GameMethods {
         return gamearray;
     }
 
-    public static void MakeMove (int column, int[][] gameArray) {
+    public static int[][] MakeMove (int column, int[][] gameArray) {
         int i=0;
         while (gameArray[i][column] !=0 && i<5){
             i++;
         }
         if (i >5 ){
             // if i > 5, we're off the board, and no move was made.
-            return;
+            return gameArray;
         }
         int piece;
         if (GameEngine.computermove) {
@@ -34,7 +34,7 @@ public class GameMethods {
         GameEngine.computermove = !GameEngine.computermove;
         gameArray[i][column]= piece;
 
-        return;
+        return gameArray;
     }
 
     public static void printBoard(int[][] gameArray){
