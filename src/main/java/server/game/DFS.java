@@ -1,8 +1,8 @@
-package main.game;
+package server.game;
 
-import main.game.Tree.SeptinaryTree;
-import main.game.Tree.TreeNode;
-import main.pojos.ReturnTree;
+import server.game.Tree.SeptinaryTree;
+import server.game.Tree.TreeNode;
+import server.pojos.ReturnTree;
 import org.apache.commons.lang3.SerializationUtils;
 import java.util.HashSet;
 
