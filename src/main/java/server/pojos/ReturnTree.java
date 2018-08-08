@@ -1,4 +1,4 @@
-package main.pojos;
+package server.pojos;
 
 import java.util.HashSet;
 

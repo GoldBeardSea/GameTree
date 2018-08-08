@@ -1,4 +1,4 @@
-package main.game;
+package server.game;
 
 public class CheckWin {
     static boolean look(int[][] gameArray, int row, int column) {

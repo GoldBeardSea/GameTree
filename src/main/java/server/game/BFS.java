@@ -1,6 +1,6 @@
-package main.game;
+package server.game;
 
-import main.game.Tree.TreeNode;
+import server.game.Tree.TreeNode;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.HashSet;
@@ -26,7 +26,7 @@ public class BFS {
 
     public static int search (TreeNode node, int depth, int[][] gameArray) {
         Queue<TreeNode> qq = new LinkedList<>();
-        qq.add(node);
+        qq.add(node); 
         qq = search(qq, depth, gameArray);
 
         int column=0;

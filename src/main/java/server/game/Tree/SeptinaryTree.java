@@ -1,4 +1,4 @@
-package main.game.Tree;
+package server.game.Tree;
 
 public class SeptinaryTree {
 

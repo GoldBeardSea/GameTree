@@ -1,12 +1,13 @@
-package main.game;
+package server.game;
 
-import main.game.Tree.SeptinaryTree;
+import server.game.Tree.SeptinaryTree;
+import server.game.CheckWin;
 //import org.apache.commons.lang3.SerializationUtils;
 
 public class GameEngine {
 
     //  Initialize decision tree and game array.
-    public static int[][] gameArray = GameMethods.newBoard();
+    public static int[][] gameArray = server.game.GameMethods.newBoard();
     static boolean computermove = false;
     final static int plydepth = 6;
 
