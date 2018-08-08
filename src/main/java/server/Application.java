@@ -88,7 +88,7 @@ public class Application {
 
     @GetMapping("/play")
     public ModelAndView game() {
-        System.out.println("Hello");
+
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("play");
@@ -100,10 +100,11 @@ public class Application {
     @PostMapping("/play")
     public ModelAndView newmove(HttpServletRequest request,
                                 @RequestParam int column) {
-        System.out.println("Post Map Check");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("play");
         server.game.GameMethods.MakeMove(column, server.game.GameEngine.gameArray);
+        GameEngine.computermove = !GameEngine.computermove;
+        System.out.println(column);
         return mv;
     }
 }

@@ -8,7 +8,7 @@ public class GameEngine {
 
     //  Initialize decision tree and game array.
     public static int[][] gameArray = server.game.GameMethods.newBoard();
-    static boolean computermove = false;
+    public static boolean computermove = false;
     final static int plydepth = 6;
 
     ///////////////////////////////////////////////////////////////

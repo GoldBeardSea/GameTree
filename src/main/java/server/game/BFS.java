@@ -67,7 +67,19 @@ public class BFS {
             for (int j=0; j < evaluating.path.length(); j++) {
                 int col = evaluating.path.charAt(j)-48;
                 temp = GameMethods.MakeMove(col,temp);
+                //printing out temp
             }
+
+            for (int k =5; k>-1; k--){
+                String str = "";
+                for (int l=0; l<7; l++){
+                    str += temp[k][l];
+                }
+                System.out.println(str);
+            }
+            System.out.println(hash.contains(temp));
+            System.out.println("//////////////////////////////////");
+
             if (!hash.contains(temp)){
                 hash.add(temp);
                 qq.add(evaluating);
@@ -77,5 +89,4 @@ public class BFS {
         }
         return hash;
     }
-
 }

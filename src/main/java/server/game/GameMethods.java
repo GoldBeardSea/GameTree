@@ -11,7 +11,7 @@ public class GameMethods {
                 {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0},
-                {0,0,-1,1,-1,0,0}};
+                {0,0,0,0,0,0,0}};
         return gamearray;
     }
 
@@ -31,7 +31,6 @@ public class GameMethods {
             piece =-1;
         }
 
-        GameEngine.computermove = !GameEngine.computermove;
         gameArray[i][column]= piece;
 
         return gameArray;
