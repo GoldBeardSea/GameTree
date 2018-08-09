@@ -2,6 +2,7 @@ package server;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import server.game.CheckWin;
 import server.game.GameEngine;
 import server.models.UserModel;
 import server.repositories.UserDatabaseRepository;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import static server.game.CheckWin.look;
 
 @Controller
 @SpringBootApplication
@@ -102,7 +105,17 @@ public class Application {
         ModelAndView mv = new ModelAndView();
         server.game.GameMethods.MakeMove(column, server.game.GameEngine.gameArray);
         GameEngine.computermove = !GameEngine.computermove;
-        System.out.println(column);
+        int row=-2;
+        for (int i =5; i > -1; i--){
+            if (GameEngine.gameArray[i][column] !=0){
+                row=i;
+                i=-100;
+            }
+        }
+        boolean wins = CheckWin.look(GameEngine.gameArray, row ,column);
+        if (wins){
+            System.out.println("Game Over");
+        }
         return GameEngine.gameArray;
     }
 }
