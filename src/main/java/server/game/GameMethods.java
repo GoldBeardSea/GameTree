@@ -17,27 +17,22 @@ public class GameMethods {
 
     public static int[][] MakeMove (int column, int[][] gameArray) {
         int i=0;
-        while (gameArray[i][column] !=0 && i<5){
+        while (gameArray[i][column] !=0 && i<6){
             i++;
         }
         if (i >5 ){
             // if i > 5, we're off the board, and no move was made.
             return gameArray;
-        }
-        int piece;
-        if (GameEngine.computermove) {
-            piece = 1;
-        } else{
-            piece =-1;
-        }
+        } else {
+            int piece;
+            if (GameEngine.computermove) {
+                piece = 1;
+            } else {
+                piece = -1;
+            }
 
-        gameArray[i][column]= piece;
-        return gameArray;
-    }
-
-    public static void printBoard(int[][] gameArray){
-        for (int i=5; i>-1;i--) {
-            System.out.println(Arrays.toString(gameArray[i]));
+            gameArray[i][column] = piece;
+            return gameArray;
         }
     }
 }

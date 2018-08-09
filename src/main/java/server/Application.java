@@ -2,8 +2,7 @@ package server;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import server.game.CheckWin;
-import server.game.GameEngine;
+import server.game.*;
 import server.models.UserModel;
 import server.repositories.UserDatabaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,10 @@ import java.util.Date;
 import java.util.List;
 
 import static server.game.CheckWin.look;
+import static server.game.GameEngine.computermove;
+import static server.game.GameEngine.gameArray;
+import static server.game.move.chooseRandomMove;
+import static server.game.move.pcmove;
 
 @Controller
 @SpringBootApplication
@@ -95,7 +98,7 @@ public class Application {
     public ModelAndView game() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("play");
-        mv.addObject("gameArray", GameEngine.gameArray);
+        mv.addObject("gameArray", gameArray);
 
         return mv;
     }
@@ -104,21 +107,13 @@ public class Application {
     @ResponseBody
     public int[][] newmove(HttpServletRequest request,
                                 @RequestParam int column) {
-        ModelAndView mv = new ModelAndView();
-        server.game.GameMethods.MakeMove(column, server.game.GameEngine.gameArray);
-        GameEngine.computermove = !GameEngine.computermove;
-        int row=-2;
-        for (int i =5; i > -1; i--){
-            if (GameEngine.gameArray[i][column] !=0){
-                row=i;
-                i=-100;
-            }
-        }
-        boolean wins = CheckWin.look(GameEngine.gameArray, row ,column);
-        if (wins){
-            System.out.println("Game Over");
-        }
-        return GameEngine.gameArray;
+        move.playermove(gameArray, column);
+        computermove = !computermove;
+        pcmove(gameArray);
+//        chooseRandomMove();
+        computermove = !computermove;
+
+        return gameArray;
     }
 
     @GetMapping("/login")
