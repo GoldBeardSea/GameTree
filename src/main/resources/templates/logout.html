@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,47 +18,22 @@
         <div class="inner">
             <h1 class="masthead-brand">GameTree</h1>
             <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link active" href="#">Login</a>
+                <a class="nav-link" href="#">Home</a>
                 <a class="nav-link" href="#">Play</a>
                 <a class="nav-link" href="#">Leaderboard</a>
-                <a class="nav-link" href="#">AboutUs</a>
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link active" href="#">Logout</a>
             </nav>
         </div>
     </header>
 
-    <main role="main" class="inner cover"><table class="table table-dark">
-        <table class="table" background-color >
-            <thead>
-            <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Wins</th>
-                <th scope="col">Loses</th>
-                <th scope="col">Ties</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">Ahmed</th>
-                <td>100</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <th scope="row">Travis</th>
-                <td>0</td>
-                <td>100</td>
-                <td>0</td>
-            </tr>
-            <tr th:each="users : ${users}">
-                <td th:text="${users.login}"></td>
-                <td th:text="${users.wins}"></td>
-                <td th:text="${users.losses}"></td>
-                <td th:text="${users.ties}"></td>
-            </tr>
-            </tbody>
-        </table>
-
+    <main role="main" class="inner cover">
+        <h1>Thanks for playing!</h1>
+        <form action="/auth/logout" method="POST">
+            <input type="submit" />
+        </form>
+        <p>
+        <a href="/">home</a>
+    </p>
     </main>
 
     <footer class="mastfoot mt-auto">

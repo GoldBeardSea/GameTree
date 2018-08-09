@@ -1,4 +1,8 @@
-public class Game {
+package server.game;
+
+import java.util.Arrays;
+
+public class GameMethods {
 
     public static int[][] newBoard () {
         int[][] gamearray = {
@@ -11,15 +15,14 @@ public class Game {
         return gamearray;
     }
 
-    public static int MakeMove (int column, int[][] gameArray) {
-
-        int i =0;
+    public static int[][] MakeMove (int column, int[][] gameArray) {
+        int i=0;
         while (gameArray[i][column] !=0 && i<5){
             i++;
         }
         if (i >5 ){
             // if i > 5, we're off the board, and no move was made.
-            return i;
+            return gameArray;
         }
         int piece;
         if (GameEngine.computermove) {
@@ -28,9 +31,13 @@ public class Game {
             piece =-1;
         }
 
-        GameEngine.computermove = !GameEngine.computermove;
         gameArray[i][column]= piece;
+        return gameArray;
+    }
 
-        return i;
+    public static void printBoard(int[][] gameArray){
+        for (int i=5; i>-1;i--) {
+            System.out.println(Arrays.toString(gameArray[i]));
+        }
     }
 }

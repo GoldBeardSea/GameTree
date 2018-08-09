@@ -31,7 +31,9 @@ public class AuthController {
             if (userIterator.login.equals(login)) {
                 mv.setViewName("loginerror");
                 mv.addObject("error", "Sorry, that username already exists. Choose another.");
-            } else {
+                return mv;
+            }
+            if (i == userList.size() - 1) {
                 UserModel user = new UserModel(username, login, password, bio);
                 userDB.save(user);
                 mv.setViewName("loggedin");
@@ -39,7 +41,7 @@ public class AuthController {
             }
 
         }
-        return mv;
+        return new ModelAndView("redirect:/play");
     }
 
     @PostMapping("/login")
@@ -75,8 +77,7 @@ public class AuthController {
                 mv.addObject("error", "Wrong password. Try again.");
             }
         }
-
-        return mv;
+        return new ModelAndView("redirect:/play");
     }
 
     @PostMapping("/logout")
@@ -95,6 +96,6 @@ public class AuthController {
             model.addAttribute("login", login);
         }
         System.out.println(session.getId() + " " + login);
-        return new ModelAndView("loggedout");
+        return new ModelAndView("redirect:/");
     }
 }
