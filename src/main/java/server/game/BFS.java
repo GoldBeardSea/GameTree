@@ -10,28 +10,25 @@ import java.util.Queue;
 
 public class BFS {
     public static void main(String[] args) {
-        int [][] ga = {
+        int[][] gamearray = {
                 {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0},
-                {0,0,1,1,1,0,0}
-        };
-
-        TreeNode node = new TreeNode();
-        node.path="";
-
-        search(node,6,ga);
+                {0,0,0,0,0,0,0}};
+        search(gamearray);
     }
 
-    public static int search (TreeNode node, int depth, int[][] gameArray) {
+    public static int search (int[][] gameArray) {
+        TreeNode node = new TreeNode();
+        int depth = 4;
         Queue<TreeNode> qq = new LinkedList<>();
-        qq.add(node); 
+        qq.add(node);
         qq = search(qq, depth, gameArray);
 
         int leaves=0;
-        int column=0;
+        int column=3;
         int bestscore=0;
         while (!qq.isEmpty()){
             node = qq.remove();
@@ -40,7 +37,7 @@ public class BFS {
                 int col = node.path.charAt(j)-48;
                 temp = GameMethods.MakeMove(col,temp);
             }
-            int score = GameEngine.evaluatePosition(temp, 1) - GameEngine.evaluatePosition(temp,0);
+            int score = GameEngine.evaluatePosition(temp);
             System.out.println(score);
             if(score > bestscore) {
                 bestscore=score;
@@ -82,19 +79,9 @@ public class BFS {
             evaluating.path=node.path+i;
             for (int j=0; j < evaluating.path.length(); j++) {
                 int col = evaluating.path.charAt(j)-48;
+                System.out.println(evaluating.path);
                 temp = GameMethods.MakeMove(col,temp);
             }
-
-            //printing out temp
-//            for (int k =5; k>-1; k--){
-//                String str = "";
-//                for (int l=0; l<7; l++){
-//                    str += temp[k][l];
-//                }
-//                System.out.println(str);
-//            }
-//            System.out.println(hash.contains(temp));
-//            System.out.println("//////////////////////////////////");
 
             boolean equals = false;
             for (int[][] arr : hash){
@@ -105,8 +92,6 @@ public class BFS {
             if (!equals){
                 hash.add(temp);
                 qq.add(evaluating);
-            }else{
-                System.out.println("found a duplicate!");
             }
         }
         return hash;
