@@ -25,6 +25,8 @@ import static server.game.CheckWin.look;
 public class Application {
     @Autowired
     UserDatabaseRepository userDatabaseRepository;
+    @Autowired
+    UserDatabaseRepository userDB;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -159,5 +161,32 @@ public class Application {
         Collections.sort(users);
         model.addAttribute("users", users);
         return "logout";
+    }
+
+    @GetMapping("/aboutus")
+    public String aboutus(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String login = (String) session.getAttribute("login");
+        System.out.println(session.getId() + " " + login);
+        return "aboutus";
+    }
+
+    @RequestMapping("/private")
+    public class PrivateController {
+        @RequestMapping("/profile")
+        public ModelAndView handleProfileRequests(HttpServletRequest request) {
+            String servlet = request.getServletPath();
+            ModelAndView mv = new ModelAndView();
+
+            HttpSession session = request.getSession();
+            boolean isLoggedIn = (boolean) session.getAttribute("loggedin");
+            System.out.println("/private " + session.getAttribute("loggedin"));
+            if (isLoggedIn) {
+                mv.setViewName("profile");
+            } else {
+                mv.setViewName("accessdenied");
+            }
+            return mv;
+        }
     }
 }
