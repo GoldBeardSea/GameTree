@@ -23,6 +23,7 @@ public class GameEngine {
     public static int[][] gameArray = server.game.GameMethods.newBoard();
     public static boolean computermove = false;
     final static int plydepth = 6;
+    public static boolean playing = true;
 
     ///////////////////////////////////////////////////////////////
 
