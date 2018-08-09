@@ -43,7 +43,7 @@ public class Application {
         if (login != null) {
             model.addAttribute("login", login);
         }
-        System.out.println("hit home controller");
+        System.out.println("hit / controller");
         Date date = new Date();
         model.addAttribute("currenttime", date.toString());
 
@@ -64,7 +64,7 @@ public class Application {
         if (login != null) {
             model.addAttribute("login", login);
         }
-        System.out.println("hit home controller");
+        System.out.println("hit leader controller");
         Date date = new Date();
         model.addAttribute("currenttime", date.toString());
 
@@ -85,7 +85,7 @@ public class Application {
         if (login != null) {
             model.addAttribute("login", login);
         }
-        System.out.println("hit home controller");
+        System.out.println("hit homepage controller");
         return "homepage";
     }
 
@@ -130,7 +130,7 @@ public class Application {
         if (login != null) {
             model.addAttribute("login", login);
         }
-        System.out.println("hit home controller");
+        System.out.println("hit /login controller");
         Date date = new Date();
         model.addAttribute("currenttime", date.toString());
 
@@ -151,7 +151,7 @@ public class Application {
         if (login != null) {
             model.addAttribute("login", login);
         }
-        System.out.println("hit home controller");
+        System.out.println("hit /logout controller");
         Date date = new Date();
         model.addAttribute("currenttime", date.toString());
 
