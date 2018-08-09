@@ -19,7 +19,7 @@ import java.util.List;
 
 import static server.game.GameEngine.computermove;
 import static server.game.GameEngine.gameArray;
-import static server.game.Move.pcmove;
+import static server.game.Move.chooseRandomMove;
 import static server.game.Move.playermove;
 
 @Controller
@@ -92,18 +92,7 @@ public class Application {
     }
 
     @GetMapping("/play")
-    public ModelAndView game(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        String login = (String) session.getAttribute("login");
-        System.out.println(session.getId() + " " + login);
-        if (session.getAttribute("loggedin") == null) {
-            model.addAttribute("login", "user");
-        }
-        if (login != null) {
-            model.addAttribute("login", login);
-        }
-        System.out.println("hit play controller");
-        System.out.println(session.getId() + " " + login);
+    public ModelAndView game() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("play");
         mv.addObject("gameArray", gameArray);
@@ -121,43 +110,42 @@ public class Application {
         int row = playermove(gameArray, column);
         boolean isPlayerWin = CheckWin.look(GameEngine.gameArray, row, column);
         if (isPlayerWin) {
-            userWins(user);
             System.out.println("Game Over, players wins");
         }
 
+        System.out.println();
         computermove = !computermove;
 
-        row = pcmove(gameArray);
-        boolean isPCWin = CheckWin.look(GameEngine.gameArray, row, column);
+        row = chooseRandomMove();
+        boolean isPCWin = CheckWin.look(GameEngine.gameArray, row, 3);
+
         if (isPCWin) {
-            userLoss(user);
+
             System.out.println("Game Over, PC win");
+            int[][] empty = {{}};
+            return empty;
         }
 
         computermove = !computermove;
 
-//        recordWin(user, isPlayerWin, isPCWin);
+        recordWin(user, isPlayerWin, isPCWin);
 
         return gameArray;
     }
 
-    private void userWins(UserModel user) {
-        user.wins++;
-    }
-
-    private void userLoss(UserModel user) {
-        user.losses++;
-    }
+//    private void userWins(UserModel user) {
+//        user.wins++;
+//    }
+//
+//    private void userLoss(UserModel user) {
+//        user.losses++;
+//    }
 
     private void recordWin(UserModel user, boolean isPlayerwin, boolean isPCWin) {
-        if (isPlayerwin && !isPCWin) {
+        if (isPlayerwin) {
             user.wins++;
-        }
-        if (isPCWin && !isPlayerwin){
+        } else if (isPCWin){
             user.losses++;
-        }
-        if (!isPCWin && !isPlayerwin) {
-            user.ties++;
         }
 
         userDatabaseRepository.save(user);
