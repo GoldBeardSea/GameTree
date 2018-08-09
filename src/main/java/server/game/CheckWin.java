@@ -1,7 +1,7 @@
 package server.game;
 
 public class CheckWin {
-    static boolean look(int[][] gameArray, int row, int column) {
+    public static boolean look(int[][] gameArray, int row, int column) {
         int match = gameArray[row][column];
 
         //Check four in a row going down

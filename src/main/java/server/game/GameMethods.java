@@ -32,7 +32,6 @@ public class GameMethods {
         }
 
         gameArray[i][column]= piece;
-
         return gameArray;
     }
 
