@@ -105,4 +105,46 @@ public class Application {
         System.out.println(column);
         return GameEngine.gameArray;
     }
+
+    @GetMapping("/login")
+    public String login(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String login = (String) session.getAttribute("login");
+        System.out.println(session.getId() + " " + login);
+        if (session.getAttribute("loggedin") == null) {
+            model.addAttribute("login", "user");
+        }
+        if (login != null) {
+            model.addAttribute("login", login);
+        }
+        System.out.println("hit home controller");
+        Date date = new Date();
+        model.addAttribute("currenttime", date.toString());
+
+        List<UserModel> users = userDatabaseRepository.findAll();
+        Collections.sort(users);
+        model.addAttribute("users", users);
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String login = (String) session.getAttribute("login");
+        System.out.println(session.getId() + " " + login);
+        if (session.getAttribute("loggedin") == null) {
+            model.addAttribute("login", "user");
+        }
+        if (login != null) {
+            model.addAttribute("login", login);
+        }
+        System.out.println("hit home controller");
+        Date date = new Date();
+        model.addAttribute("currenttime", date.toString());
+
+        List<UserModel> users = userDatabaseRepository.findAll();
+        Collections.sort(users);
+        model.addAttribute("users", users);
+        return "logout";
+    }
 }
