@@ -1,6 +1,6 @@
 package server.game;
 
-public class move {
+public class Move {
 
     public static void main(String[] args) {
         int[][] ar = {
@@ -16,7 +16,7 @@ public class move {
         pcmove(ar);
     }
 
-    public static void pcmove(int[][] gameArray) {
+    public static int pcmove(int[][] gameArray) {
         int column = BFS.search(gameArray);
         GameMethods.MakeMove(column, GameEngine.gameArray);
         int row = -2;
@@ -26,14 +26,10 @@ public class move {
                 i = -100;
             }
         }
-        boolean wins = CheckWin.look(GameEngine.gameArray, row, column);
-        if (wins) {
-            System.out.println("Game Over, PC win");
-        }
-
+        return row;
     }
 
-    public static void playermove(int[][] gameArray, int column) {
+    public static int playermove(int[][] gameArray, int column) {
         GameMethods.MakeMove(column, GameEngine.gameArray);
         int row = -2;
         for (int i = 5; i > -1; i--) {
@@ -42,13 +38,10 @@ public class move {
                 i = -100;
             }
         }
-        boolean wins = CheckWin.look(GameEngine.gameArray, row, column);
-        if (wins) {
-            System.out.println("Game Over, user win");
-        }
+        return row;
     }
 
-    public static void chooseRandomMove() {
+    public static int chooseRandomMove() {
         int column = (int) Math.floor(Math.random() * 7);
         GameMethods.MakeMove(column, GameEngine.gameArray);
         int row = -2;
@@ -58,9 +51,6 @@ public class move {
                 i = -100;
             }
         }
-        boolean wins = CheckWin.look(GameEngine.gameArray, row, column);
-        if (wins) {
-            System.out.println("Game Over, PC win");
-        }
+        return row;
     }
 }

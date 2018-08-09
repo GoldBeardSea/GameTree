@@ -79,7 +79,7 @@ public class BFS {
             evaluating.path=node.path+i;
             for (int j=0; j < evaluating.path.length(); j++) {
                 int col = evaluating.path.charAt(j)-48;
-                System.out.println(evaluating.path);
+//                System.out.println(evaluating.path);
                 temp = GameMethods.MakeMove(col,temp);
             }
 
