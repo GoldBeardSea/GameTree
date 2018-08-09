@@ -41,7 +41,7 @@ public class AuthController {
             }
 
         }
-        return mv;
+        return new ModelAndView("redirect:/play");
     }
 
     @PostMapping("/login")
@@ -77,8 +77,7 @@ public class AuthController {
                 mv.addObject("error", "Wrong password. Try again.");
             }
         }
-
-        return mv;
+        return new ModelAndView("redirect:/play");
     }
 
     @PostMapping("/logout")
@@ -97,6 +96,6 @@ public class AuthController {
             model.addAttribute("login", login);
         }
         System.out.println(session.getId() + " " + login);
-        return new ModelAndView("loggedout");
+        return new ModelAndView("redirect:/");
     }
 }
