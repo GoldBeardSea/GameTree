@@ -17,7 +17,7 @@ public class move {
     }
 
     public static void pcmove(int[][] gameArray) {
-        int column = BFS.search(gameArray);
+        int column = BFS2.search(gameArray);
         GameMethods.MakeMove(column, GameEngine.gameArray);
         int row = -2;
         for (int i = 5; i > -1; i--) {

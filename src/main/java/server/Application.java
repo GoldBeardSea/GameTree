@@ -109,8 +109,8 @@ public class Application {
                                 @RequestParam int column) {
         move.playermove(gameArray, column);
         computermove = !computermove;
-        pcmove(gameArray);
-//        chooseRandomMove();
+//        pcmove(gameArray);
+        chooseRandomMove();
         computermove = !computermove;
 
         return gameArray;
@@ -129,7 +129,9 @@ public class Application {
         }
         System.out.println("hit home controller");
         Date date = new Date();
-        model.addAttribute("currenttime", date.toString());
+        model.addAttribute("currenttime", date.toString())
+        ;
+
 
         List<UserModel> users = userDatabaseRepository.findAll();
         Collections.sort(users);

@@ -2,9 +2,23 @@ package server.game;
 
 import server.game.Tree.SeptinaryTree;
 import server.game.CheckWin;
+
+import java.util.Collections;
 //import org.apache.commons.lang3.SerializationUtils;
 
 public class GameEngine {
+
+    public static void main(String[] args) {
+        int[][] arr = {
+                {0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0}};
+
+        System.out.println(evaluatePosition(arr));
+    }
 
     public static int[][] gameArray = server.game.GameMethods.newBoard();
     public static boolean computermove = false;
