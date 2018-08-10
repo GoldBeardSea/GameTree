@@ -1,0 +1,118 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="cover.css" rel="stylesheet">
+
+    <title>Gamtree</title>
+</head>
+<body class="text-center">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h1 class="masthead-brand">GameTree</h1>
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link active" href="/login">Login</a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Play
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                    <a class="dropdown-item" href="">Against Computer</a>
+                    <a class="dropdown-item" href="">Against Friend</a>
+                </div>
+                <a class="nav-link" href="/leaderboard">Leaderboard</a>
+                <a class="nav-link" href="/about">AboutUs</a>
+                <a class="nav-link" href="/logout">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover">
+        <table id = table>
+            <tr>
+                <td id="c1r6"><img src="connectone.png"></td>
+                <td id="c2r6"><img src="connectone.png"></td>
+                <td id="c3r6"><img src="connectone.png"></td>
+                <td id="c4r6"><img src="connectone.png"></td>
+                <td id="c5r6"><img src="connectone.png"></td>
+                <td id="c6r6"><img src="connectone.png"></td>
+                <td id="c7r6"><img src="connectone.png"></td>
+            </tr>
+            <tr>
+                <td id="c1r5"><img src="connectone.png"></td>
+                <td id="c2r5"><img src="connectone.png"></td>
+                <td id="c3r5"><img src="connectone.png"></td>
+                <td id="c4r5"><img src="connectone.png"></td>
+                <td id="c5r5"><img src="connectone.png"></td>
+                <td id="c6r5"><img src="connectone.png"></td>
+                <td id="c7r5"><img src="connectone.png"></td>
+            </tr>
+            <tr>
+                <td id="c1r4"><img src="connectone.png"></td>
+                <td id="c2r4"><img src="connectone.png"></td>
+                <td id="c3r4"><img src="connectone.png"></td>
+                <td id="c4r4"><img src="connectone.png"></td>
+                <td id="c5r4"><img src="connectone.png"></td>
+                <td id="c6r4"><img src="connectone.png"></td>
+                <td id="c7r4"><img src="connectone.png"></td>
+            </tr>
+            <tr>
+                <td id="c1r3"><img src="connectone.png"></td>
+                <td id="c2r3"><img src="connectone.png"></td>
+                <td id="c3r3"><img src="connectone.png"></td>
+                <td id="c4r3"><img src="connectone.png"></td>
+                <td id="c5r3"><img src="connectone.png"></td>
+                <td id="c6r3"><img src="connectone.png"></td>
+                <td id="c7r3"><img src="connectone.png"></td>
+            </tr>
+            <tr>
+                <td id="c1r2"><img src="connectone.png"></td>
+                <td id="c2r2"><img src="connectone.png"></td>
+                <td id="c3r2"><img src="connectone.png"></td>
+                <td id="c4r2"><img src="connectone.png"></td>
+                <td id="c5r2"><img src="connectone.png"></td>
+                <td id="c6r2"><img src="connectone.png"></td>
+                <td id="c7r2"><img src="connectone.png"></td>
+            </tr>
+            <tr>
+                <td id="c1r1"><img src="connectone.png"></td>
+                <td id="c2r1"><img src="connectone.png"></td>
+                <td id="c3r1"><img src="connectone.png"></td>
+                <td id="c4r1"><img src="connectone.png"></td>
+                <td id="c5r1"><img src="connectone.png"></td>
+                <td id="c6r1"><img src="connectone.png"></td>
+                <td id="c7r1"><img src="connectone.png"></td>
+            </tr>
+        </table>
+        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">New Game</a>
+
+
+    </main>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>Project by Ahmed, GB, Travis</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+<script th:inline="javascript">
+    var gameArray = [[${gameArray}]];
+</script>
+<script src="/js/connectfour.js"></script>
+</html>
