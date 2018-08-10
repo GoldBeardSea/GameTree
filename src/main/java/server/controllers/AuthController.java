@@ -30,8 +30,8 @@ public class AuthController {
             UserModel userIterator = userList.get(i);
             if (userIterator.login.equals(login)) {
                 mv.setViewName("loginerror");
-                mv.addObject("error", "Sorry, that username already exists. Choose another.");
-                return mv;
+                mv.addObject("error", "Login Taken. Try again.");
+                return new ModelAndView("redirect:/accessdenied");
             }
             if (i == userList.size() - 1) {
                 UserModel user = new UserModel(username, login, password, bio);
