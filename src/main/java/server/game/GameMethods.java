@@ -26,7 +26,7 @@ public class GameMethods {
             i++;
         }
         if (i >5 ){
-            // if i > 5, we're off the board, and no move was made.
+            // if i > 5, we're off the board, and no Move was made.
             return gameArray;
         } else {
             int piece;

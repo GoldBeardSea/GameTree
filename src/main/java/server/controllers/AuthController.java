@@ -86,6 +86,7 @@ public class AuthController {
             } else {
                 mv.setViewName("loginerror");
                 mv.addObject("error", "Wrong password. Try again.");
+                return mv;
             }
         }
         HttpSession session = request.getSession();
