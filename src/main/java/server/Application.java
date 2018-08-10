@@ -27,6 +27,8 @@ import static server.game.GameEngine.playing;
 public class Application {
     @Autowired
     UserDatabaseRepository userDatabaseRepository;
+    @Autowired
+    UserDatabaseRepository UserDB;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -105,12 +107,17 @@ public class Application {
     @ResponseBody
     public int[][] newmove(HttpServletRequest request,
                                 @RequestParam int column) {
-
-
+        HttpSession session = request.getSession();
+        UserModel user = (UserModel) session.getAttribute("user");
         if (playing) {
             playermove(gameArray, column);
             System.out.println("playing = " + playing);
+            System.out.println(user.login);
             if (!playing) {
+                System.out.println("Winning score allocated");
+                user.wins++;
+                userDatabaseRepository.save(user);
+
 
             }
         }
@@ -120,6 +127,11 @@ public class Application {
         if (playing) {
             chooseRandomMove();
             System.out.println("playing = " + playing);
+            if (!playing) {
+                user.losses++;
+                userDatabaseRepository.save(user);
+
+            }
         }
         computermove = !computermove;
         return gameArray;
