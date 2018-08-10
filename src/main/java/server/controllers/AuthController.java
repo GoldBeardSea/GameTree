@@ -61,17 +61,19 @@ public class AuthController {
 
         UserModel user = null;
         List<UserModel> userList = userDB.findAll();
+        Boolean found = false;
         for (int i = 0; i < userList.size(); i++) {
             UserModel userIterator = userList.get(i);
             if (userIterator.login.equals(login)) {
                 user = userIterator;
                 System.out.println("We're here " + user.login);
+                found = true;
             }
-            if (i == userList.size() - 1) {
-                mv.setViewName("loginerror");
-                mv.addObject("error", "Wrong password. Try again.");
-                return new ModelAndView("redirect:/accessdenied");
-            }
+        }
+        if (found = false) {
+            mv.setViewName("loginerror");
+            mv.addObject("error", "Wrong password. Try again.");
+            return new ModelAndView("redirect:/accessdenied");
 
         }
         if (user == null) {
