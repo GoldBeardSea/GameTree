@@ -27,11 +27,15 @@ body {
 }
 
 .table {
-    margin-top: 500px;
-    border-radius: 5px;
     width: 50%;
     margin: 0px auto;
-    float: none;
+    margin-top: 40;
+}
+
+.gametable {
+    margin: 0px auto;
+    margin-top: 40;
+    margin-bottom: 10;
 }
 
 
@@ -71,3 +75,4 @@ body {
 }
 .btn {
 margin-top: 10px }
+
