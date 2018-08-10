@@ -17,9 +17,16 @@
     <header class="masthead mb-auto">
         <div class="inner">
             <h1 class="masthead-brand">GameTree</h1>
+
             <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link active" href="/login">Login</a>
-                <a class="nav-link" href="/play">Play</a>
+                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Play
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                    <a class="dropdown-item" href="">Against Computer</a>
+                    <a class="dropdown-item" href="">Against Friend</a>
+                </div>
                 <a class="nav-link" href="/leaderboard">Leaderboard</a>
                 <a class="nav-link" href="/aboutus">AboutUs</a>
                 <a class="nav-link" href="/logout">Logout</a>
@@ -28,29 +35,10 @@
     </header>
 
     <div class="container">
-
-        <form class="form-signin" action="/auth/login" method="POST">
-            <h2 class="form-signin-heading">Sign in</h2>
-            <label class="sr-only">Login</label>
-            <input type="login" id="username" class="form-control" placeholder="Login" name="login" required
-                   autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
-
-        <form class="form-signin" action="/auth/register" method="POST">
-            <h2 class="form-signin-heading">Register</h2>
-            <label class="sr-only">Username</label>
-            <input type="username"  class="form-control" placeholder="New Username" name="username" required autofocus>
-            <label class="sr-only">Login</label>
-            <input type="login"  class="form-control" placeholder="New Login" name="login" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password"  class="form-control" placeholder="New Password" name="password" required>
-            <label class="sr-only">Profile Bio</label>
-            <textarea name="bio" class="form-control" placeholder="Enter Bio" rows="4" cols="80"></textarea>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-        </form>
+        <div class="jumbotron text-center">
+            <h1>Player # Wins</h1>
+            <p></p>
+        </div>
     </div>
 
 

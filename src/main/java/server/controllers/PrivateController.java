@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/private")
 public class PrivateController {
-    @RequestMapping("/*")
+    @RequestMapping("/profile")
     public ModelAndView handlePrivateRequests(HttpServletRequest request) {
         String servlet = request.getServletPath();
         ModelAndView mv = new ModelAndView();
