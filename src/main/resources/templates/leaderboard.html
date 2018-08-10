@@ -48,18 +48,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="row">Ahmed</th>
-        <td>100</td>
-        <td>0</td>
-        <td>0</td>
-    </tr>
-    <tr>
-        <th scope="row">Travis</th>
-        <td>0</td>
-        <td>100</td>
-        <td>0</td>
-    </tr>
     <tr th:each="users : ${users}">
         <td th:text="${users.login}"></td>
         <td th:text="${users.wins}"></td>
