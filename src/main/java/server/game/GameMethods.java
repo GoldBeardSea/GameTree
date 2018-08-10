@@ -1,6 +1,8 @@
 package server.game;
 
-import java.util.Arrays;
+
+import static server.game.GameEngine.computermove;
+import static server.game.GameEngine.playing;
 
 public class GameMethods {
 
@@ -12,6 +14,9 @@ public class GameMethods {
                 {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0}};
+
+        playing = true;
+        computermove = false;
         return gamearray;
     }
 
@@ -21,7 +26,7 @@ public class GameMethods {
             i++;
         }
         if (i >5 ){
-            // if i > 5, we're off the board, and no move was made.
+            // if i > 5, we're off the board, and no Move was made.
             return gameArray;
         } else {
             int piece;
