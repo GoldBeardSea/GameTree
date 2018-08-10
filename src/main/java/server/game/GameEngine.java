@@ -24,6 +24,7 @@ public class GameEngine {
     public static boolean computermove = false;
     final static int plydepth = 6;
     public static boolean playing = true;
+    public static boolean PCPlaying = true;
 
     ///////////////////////////////////////////////////////////////
 

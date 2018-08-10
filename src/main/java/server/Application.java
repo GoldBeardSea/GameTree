@@ -21,6 +21,7 @@ import static server.game.GameEngine.gameArray;
 import static server.game.Move.chooseRandomMove;
 import static server.game.Move.playermove;
 import static server.game.GameEngine.playing;
+import static server.game.GameEngine.PCPlaying;
 
 @Controller
 @SpringBootApplication
@@ -34,6 +35,28 @@ public class Application {
         SpringApplication.run(Application.class, args);
         System.out.println("http://localhost:8080");
 
+    }
+
+    @GetMapping("/pvp")
+    public ModelAndView pvp() {
+        System.out.println("GETMAPPED");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("play");
+        PCPlaying = false;
+        gameArray = server.game.GameMethods.newBoard();
+        mv.addObject("gameArray", gameArray);
+        return mv;
+    }
+
+    @GetMapping("/pve")
+    public ModelAndView pve() {
+        System.out.println("hihi");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("play");
+        PCPlaying = true;
+        gameArray = server.game.GameMethods.newBoard();
+        mv.addObject("gameArray", gameArray);
+        return mv;
     }
 
     @PostMapping("/newgame")
@@ -122,9 +145,7 @@ public class Application {
         UserModel user = (UserModel) session.getAttribute("user");
         if (playing) {
             playermove(gameArray, column);
-            System.out.println("playing = " + playing);
-            System.out.println(user.login);
-            if (!playing) {
+            if (!playing && PCPlaying) {
                 System.out.println("Winning score allocated");
                 user.wins++;
                 userDatabaseRepository.save(user);
@@ -135,7 +156,7 @@ public class Application {
 
         computermove = !computermove;
 //        pcmove(gameArray);
-        if (playing) {
+        if (playing && PCPlaying) {
             chooseRandomMove();
             System.out.println("playing = " + playing);
             if (!playing) {
@@ -143,27 +164,9 @@ public class Application {
                 userDatabaseRepository.save(user);
 
             }
+            computermove = !computermove;
         }
-        computermove = !computermove;
         return gameArray;
-    }
-
-    private void userWins(UserModel user) {
-        user.wins++;
-    }
-
-    private void userLoss(UserModel user) {
-        user.losses++;
-    }
-
-    private void recordWin(UserModel user, boolean isPlayerwin, boolean isPCWin) {
-        if (isPlayerwin) {
-            user.wins++;
-        } else if (isPCWin){
-            user.losses++;
-        }
-
-        userDatabaseRepository.save(user);
     }
 
     @GetMapping("/login")
@@ -210,7 +213,7 @@ public class Application {
         return "logout";
     }
 
-    @GetMapping("/aboutus")
+    @GetMapping("/about")
     public String aboutus(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         String login = (String) session.getAttribute("login");
