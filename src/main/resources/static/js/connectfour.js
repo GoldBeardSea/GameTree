@@ -4,6 +4,28 @@ playing=true;
 var button = document.getElementById("NewGame");
 button.addEventListener("click", newgameclicked);
 
+
+$('#pvp').on('click', function (e) {
+  e.preventDefault();
+  $.ajax('/pvp', {
+    method: 'GET',
+    data: {
+    }
+  }).then(location.reload())
+
+})
+
+
+$('#pve').on('click', function (e) {
+  e.preventDefault();
+  $.ajax('/pve', {
+    method: 'GET',
+    data: {
+    }
+  }).then(location.reload())
+
+})
+
 function newgameclicked(event) {
   $.ajax('/newgame', {
     method: 'POST',
