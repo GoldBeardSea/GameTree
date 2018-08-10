@@ -22,7 +22,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ModelAndView register(@RequestParam String username, String login, @RequestParam String password,
-                                 @RequestParam String bio) {
+                                 @RequestParam String bio, HttpServletRequest request) {
 
         ModelAndView mv = new ModelAndView();
         List<UserModel> userList = userDB.findAll();
@@ -38,6 +38,13 @@ public class AuthController {
                 userDB.save(user);
                 mv.setViewName("loggedin");
                 mv.addObject("login", login);
+
+                HttpSession session = request.getSession();
+                session.setAttribute("loggedin", true);
+                session.setAttribute("login", user.login);
+                session.setAttribute("name", user.name);
+                session.setAttribute("user_id", user.id);
+                session.setAttribute("user", user);
             }
 
         }
@@ -72,11 +79,23 @@ public class AuthController {
 
                 HttpSession session = request.getSession();
                 session.setAttribute("loggedin", true);
+                session.setAttribute("login", user.login);
+                session.setAttribute("name", user.name);
+                session.setAttribute("user_id", user.id);
+                session.setAttribute("user", user);
             } else {
                 mv.setViewName("loginerror");
                 mv.addObject("error", "Wrong password. Try again.");
+                return mv;
             }
         }
+        HttpSession session = request.getSession();
+        System.out.println(login);
+        System.out.println("here");
+        System.out.println("We're here " + login);
+        HttpSession sessionCheck = request.getSession();
+        String login2 = (String) sessionCheck.getAttribute("login");
+        System.out.println(login2);
         return new ModelAndView("redirect:/play");
     }
 
