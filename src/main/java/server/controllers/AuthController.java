@@ -86,7 +86,7 @@ public class AuthController {
             } else {
                 mv.setViewName("loginerror");
                 mv.addObject("error", "Wrong password. Try again.");
-                return mv;
+                return new ModelAndView("redirect:/accessdenied");
             }
         }
         HttpSession session = request.getSession();
