@@ -70,7 +70,8 @@ public class AuthController {
         }
         if (user == null) {
             mv.setViewName("loginerror");
-            mv.addObject("error", "Login not found. Choose another.");
+            mv.addObject("error", "Wrong password. Try again.");
+            return new ModelAndView("redirect:/accessdenied");
         } else {
             boolean isCorrectPassword = user.checkPassword(password);
             if(isCorrectPassword) {
