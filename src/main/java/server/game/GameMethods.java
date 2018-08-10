@@ -1,6 +1,9 @@
 package server.game;
 
 
+import static server.game.GameEngine.computermove;
+import static server.game.GameEngine.playing;
+
 public class GameMethods {
 
     public static int[][] newBoard () {
@@ -11,6 +14,9 @@ public class GameMethods {
                 {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0}};
+
+        playing = true;
+        computermove = false;
         return gamearray;
     }
 

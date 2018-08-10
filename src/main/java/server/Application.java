@@ -39,6 +39,17 @@ public class Application {
 
     }
 
+    @PostMapping("/newgame")
+    public ModelAndView newgame() {
+        System.out.println("hihi");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("play");
+        gameArray = server.game.GameMethods.newBoard();
+        mv.addObject("gameArray", gameArray);
+        return mv;
+    }
+
+
     @GetMapping("/")
     public String index(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();

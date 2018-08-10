@@ -1,6 +1,17 @@
 var table = document.getElementById("table");
 table.addEventListener("click", tableclicked);
 playing=true;
+var button = document.getElementById("NewGame");
+button.addEventListener("click", newgameclicked);
+
+function newgameclicked(event) {
+  $.ajax('http://localhost:8080/newgame', {
+    method: 'POST',
+    data: {
+    }
+  }).then(window.location.href="http://localhost:8080/play")
+}
+
 
 function tableclicked(event) {
   let id = event.target.parentElement.id;
