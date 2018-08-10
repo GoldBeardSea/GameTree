@@ -26,7 +26,7 @@ function drawboard(board) {
       if (board[row][column] === 1) {
         newtd.style.backgroundColor="red";
       } else if (board[row][column] === -1) {
-        newtd.style.backgroundColor="yellow";
+        newtd.style.backgroundColor="blue";
       }
     }
   }

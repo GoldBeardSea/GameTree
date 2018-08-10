@@ -76,3 +76,7 @@ body {
 .btn {
 margin-top: 10px }
 
+td {
+padding: 0;
+}
+
