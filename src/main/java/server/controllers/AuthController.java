@@ -67,10 +67,17 @@ public class AuthController {
                 user = userIterator;
                 System.out.println("We're here " + user.login);
             }
+            if (i == userList.size() - 1) {
+                mv.setViewName("loginerror");
+                mv.addObject("error", "Wrong password. Try again.");
+                return new ModelAndView("redirect:/accessdenied");
+            }
+
         }
         if (user == null) {
             mv.setViewName("loginerror");
-            mv.addObject("error", "Login not found. Choose another.");
+            mv.addObject("error", "Wrong password. Try again.");
+            return new ModelAndView("redirect:/accessdenied");
         } else {
             boolean isCorrectPassword = user.checkPassword(password);
             if(isCorrectPassword) {
