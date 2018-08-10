@@ -122,8 +122,6 @@ public class Application {
         UserModel user = (UserModel) session.getAttribute("user");
         if (playing) {
             playermove(gameArray, column);
-            System.out.println("playing = " + playing);
-            System.out.println(user.login);
             if (!playing) {
                 System.out.println("Winning score allocated");
                 user.wins++;
@@ -146,24 +144,6 @@ public class Application {
         }
         computermove = !computermove;
         return gameArray;
-    }
-
-    private void userWins(UserModel user) {
-        user.wins++;
-    }
-
-    private void userLoss(UserModel user) {
-        user.losses++;
-    }
-
-    private void recordWin(UserModel user, boolean isPlayerwin, boolean isPCWin) {
-        if (isPlayerwin) {
-            user.wins++;
-        } else if (isPCWin){
-            user.losses++;
-        }
-
-        userDatabaseRepository.save(user);
     }
 
     @GetMapping("/login")
@@ -210,7 +190,7 @@ public class Application {
         return "logout";
     }
 
-    @GetMapping("/aboutus")
+    @GetMapping("/about")
     public String aboutus(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         String login = (String) session.getAttribute("login");

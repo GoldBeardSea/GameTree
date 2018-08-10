@@ -34,14 +34,13 @@
                 </li>
                 <a class="nav-link" href="/leaderboard">Leaderboard</a>
                 <a class="nav-link" href="/about">About Us</a>
-                <a class="nav-link" href="/index">Logout</a>
+                <a class="nav-link" href="/logout">Logout</a>
             </ul>
         </div>
     </div>
 </nav>
 
-<<<<<<< HEAD
-<table class="gametable">
+<table class="gametable" id="table">
     <tr>
         <td id="c1r6"><img src="connectone.png"></td>
         <td id="c2r6"><img src="connectone.png"></td>
@@ -98,70 +97,9 @@
     </tr>
 </table>
 <!-- /.container -->
-<a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">New Game</a>
-<a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Play Friend</a>
-<a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Play Computer</a>
-=======
-    <main role="main" class="inner cover">
-        <table id = table>
-            <tr>
-                <td id="c1r6"><img src="connectone.png"></td>
-                <td id="c2r6"><img src="connectone.png"></td>
-                <td id="c3r6"><img src="connectone.png"></td>
-                <td id="c4r6"><img src="connectone.png"></td>
-                <td id="c5r6"><img src="connectone.png"></td>
-                <td id="c6r6"><img src="connectone.png"></td>
-                <td id="c7r6"><img src="connectone.png"></td>
-            </tr>
-            <tr>
-                <td id="c1r5"><img src="connectone.png"></td>
-                <td id="c2r5"><img src="connectone.png"></td>
-                <td id="c3r5"><img src="connectone.png"></td>
-                <td id="c4r5"><img src="connectone.png"></td>
-                <td id="c5r5"><img src="connectone.png"></td>
-                <td id="c6r5"><img src="connectone.png"></td>
-                <td id="c7r5"><img src="connectone.png"></td>
-            </tr>
-            <tr>
-                <td id="c1r4"><img src="connectone.png"></td>
-                <td id="c2r4"><img src="connectone.png"></td>
-                <td id="c3r4"><img src="connectone.png"></td>
-                <td id="c4r4"><img src="connectone.png"></td>
-                <td id="c5r4"><img src="connectone.png"></td>
-                <td id="c6r4"><img src="connectone.png"></td>
-                <td id="c7r4"><img src="connectone.png"></td>
-            </tr>
-            <tr>
-                <td id="c1r3"><img src="connectone.png"></td>
-                <td id="c2r3"><img src="connectone.png"></td>
-                <td id="c3r3"><img src="connectone.png"></td>
-                <td id="c4r3"><img src="connectone.png"></td>
-                <td id="c5r3"><img src="connectone.png"></td>
-                <td id="c6r3"><img src="connectone.png"></td>
-                <td id="c7r3"><img src="connectone.png"></td>
-            </tr>
-            <tr>
-                <td id="c1r2"><img src="connectone.png"></td>
-                <td id="c2r2"><img src="connectone.png"></td>
-                <td id="c3r2"><img src="connectone.png"></td>
-                <td id="c4r2"><img src="connectone.png"></td>
-                <td id="c5r2"><img src="connectone.png"></td>
-                <td id="c6r2"><img src="connectone.png"></td>
-                <td id="c7r2"><img src="connectone.png"></td>
-            </tr>
-            <tr>
-                <td id="c1r1"><img src="connectone.png"></td>
-                <td id="c2r1"><img src="connectone.png"></td>
-                <td id="c3r1"><img src="connectone.png"></td>
-                <td id="c4r1"><img src="connectone.png"></td>
-                <td id="c5r1"><img src="connectone.png"></td>
-                <td id="c6r1"><img src="connectone.png"></td>
-                <td id="c7r1"><img src="connectone.png"></td>
-            </tr>
-        </table>
-        <a href="#" id="NewGame" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">New Game</a>
->>>>>>> 09f9794815ae8dbf17bac597a0a35b5489571746
-
+<a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="NewGame">New Game</a>
+<a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="pvp">Play Friend</a>
+<a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="pve">Play Computer</a>
 
 <!-- Footer -->
 <footer class="py-5 bg-dark">
@@ -174,7 +112,7 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script th:inline="javascript">

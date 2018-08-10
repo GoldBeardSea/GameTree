@@ -1,4 +1,4 @@
-<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -7,46 +7,39 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="cover.css" rel="stylesheet">
+    <link href="homeexp.css" rel="stylesheet">
+    <link href="gameboard.css" rel="stylesheet">
 
-    <title>Gamtree</title>
+
+    <title>Gametree</title>
 </head>
-<body class="text-center">
-
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="masthead mb-auto">
-        <div class="inner">
-            <h1 class="masthead-brand">GameTree</h1>
-            <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/play">Play</a>
-                <a class="nav-link" href="/aboutus">Leaderboard</a>
-                <a class="nav-link active" href="/logout">Logout</a>
-            </nav>
-        </div>
-    </header>
-
-    <main role="main" class="inner cover">
-        <h1>Thanks for playing!</h1>
-        <form action="/auth/logout" method="POST">
-            <input type="submit" />
-        </form>
-        <p>
+<body class="text-center bg-dark">
+<main role="main" class="inner cover">
+    <h1>Thanks for playing!</h1>
+    <form action="/auth/logout" method="POST">
+        <input type="submit" />
+    </form>
+    <p>
         <a href="/">home</a>
     </p>
-    </main>
+</main>
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Project by Ahmed, Tim "GB", Travis</p>
+    </div>
+    <!-- /.container -->
+</footer>
 
-    <footer class="mastfoot mt-auto">
-        <div class="inner">
-            <p>Project by Ahmed, GB, Travis</p>
-        </div>
-    </footer>
-</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    var gameArray = [[${gameArray}]];
+</script>
+<script src="/js/connectfour.js"></script>
 </body>
 </html>
