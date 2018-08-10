@@ -20,8 +20,10 @@ import java.util.List;
 import static server.game.CheckWin.look;
 import static server.game.GameEngine.computermove;
 import static server.game.GameEngine.gameArray;
+import static server.game.GameEngine.playing;
 import static server.game.move.chooseRandomMove;
 import static server.game.move.pcmove;
+import static server.game.move.playermove;
 
 @Controller
 @SpringBootApplication
@@ -36,6 +38,17 @@ public class Application {
         System.out.println("http://localhost:8080");
 
     }
+
+    @PostMapping("/newgame")
+    public ModelAndView newgame() {
+        System.out.println("hihi");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("play");
+        gameArray = server.game.GameMethods.newBoard();
+        mv.addObject("gameArray", gameArray);
+        return mv;
+    }
+
 
     @GetMapping("/")
     public String index(HttpServletRequest request, Model model) {
@@ -99,6 +112,7 @@ public class Application {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("play");
         mv.addObject("gameArray", gameArray);
+        mv.addObject("playing", playing);
 
         return mv;
     }
@@ -107,10 +121,11 @@ public class Application {
     @ResponseBody
     public int[][] newmove(HttpServletRequest request,
                                 @RequestParam int column) {
-        move.playermove(gameArray, column);
+        if (playing) playermove(gameArray, column);
+        System.out.println("playing = " + playing);
         computermove = !computermove;
-        pcmove(gameArray);
-//        chooseRandomMove();
+//        pcmove(gameArray);
+        if (playing) chooseRandomMove();
         computermove = !computermove;
 
         return gameArray;
@@ -129,7 +144,9 @@ public class Application {
         }
         System.out.println("hit home controller");
         Date date = new Date();
-        model.addAttribute("currenttime", date.toString());
+        model.addAttribute("currenttime", date.toString())
+        ;
+
 
         List<UserModel> users = userDatabaseRepository.findAll();
         Collections.sort(users);

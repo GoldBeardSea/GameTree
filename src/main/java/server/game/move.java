@@ -1,5 +1,7 @@
 package server.game;
 
+import static server.game.GameEngine.playing;
+
 public class move {
 
     public static void main(String[] args) {
@@ -17,7 +19,7 @@ public class move {
     }
 
     public static void pcmove(int[][] gameArray) {
-        int column = BFS.search(gameArray);
+        int column = BFS2.search(gameArray);
         GameMethods.MakeMove(column, GameEngine.gameArray);
         int row = -2;
         for (int i = 5; i > -1; i--) {
@@ -29,6 +31,7 @@ public class move {
         boolean wins = CheckWin.look(GameEngine.gameArray, row, column);
         if (wins) {
             System.out.println("Game Over, PC win");
+            playing=false;
         }
 
     }
@@ -45,6 +48,7 @@ public class move {
         boolean wins = CheckWin.look(GameEngine.gameArray, row, column);
         if (wins) {
             System.out.println("Game Over, user win");
+            playing=false;
         }
     }
 
@@ -61,6 +65,7 @@ public class move {
         boolean wins = CheckWin.look(GameEngine.gameArray, row, column);
         if (wins) {
             System.out.println("Game Over, PC win");
+            playing=false;
         }
     }
 }

@@ -1,5 +1,6 @@
 package server.game;
 
+import server.pojos.AppendChildrenReturn;
 import server.game.Tree.TreeNode;
 import org.apache.commons.lang3.SerializationUtils;
 
@@ -11,12 +12,12 @@ import java.util.Queue;
 public class BFS {
     public static void main(String[] args) {
         int[][] gamearray = {
-                {0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0}};
+                {-1, 1, 1,-1,-1, 0, 0},
+                {-1, 1, 1, 1, 0, 0, 0},
+                { 0, 0, 0, 0, 0, 0, 0},
+                { 0, 0, 0, 0, 0, 0, 0},
+                { 0, 0, 0, 0, 0, 0, 0},
+                { 0, 0, 0, 0, 0, 0, 0}};
         search(gamearray);
     }
 
@@ -38,7 +39,6 @@ public class BFS {
                 temp = GameMethods.MakeMove(col,temp);
             }
             int score = GameEngine.evaluatePosition(temp);
-            System.out.println(score);
             if(score > bestscore) {
                 bestscore=score;
                 column = node.path.charAt(0)-48;
@@ -60,7 +60,11 @@ public class BFS {
             TreeNode node = qq.remove();
             if (node.depth < depth) {
                 node.addchildren();
-                hash = appendchildren(hash, node, qq, gameArray);
+                AppendChildrenReturn acr = new AppendChildrenReturn();
+                acr = appendchildren(hash, node, qq, gameArray);
+                hash=acr.hash;
+                qq = acr.qq;
+                System.out.println("cde");
             } else {
                 qw.add(node);
             }
@@ -69,31 +73,33 @@ public class BFS {
         return qw;
     }
 
-    private static HashSet<int[][]> appendchildren (HashSet<int[][]> hash, TreeNode node, Queue<TreeNode> qq, int[][] gameArray){
+    private static AppendChildrenReturn appendchildren (HashSet<int[][]> hash, TreeNode node, Queue<TreeNode> qq, int[][] gameArray){
+        AppendChildrenReturn acr = new AppendChildrenReturn();
+
         TreeNode[] arrayOfNodes = {node.a, node.b, node.c, node.d, node.e, node.f, node.g};
-
-
         for(int i = 0; i < arrayOfNodes.length; i++){
-            int[][] temp = SerializationUtils.clone(gameArray);
+            int[][] CurrentBoard = SerializationUtils.clone(gameArray);
             TreeNode evaluating = arrayOfNodes[i];
-            evaluating.path=node.path+i;
+            evaluating.path = node.path+i;
             for (int j=0; j < evaluating.path.length(); j++) {
                 int col = evaluating.path.charAt(j)-48;
-                System.out.println(evaluating.path);
-                temp = GameMethods.MakeMove(col,temp);
+                CurrentBoard = GameMethods.MakeMove(col,CurrentBoard);
             }
 
-            boolean equals = false;
-            for (int[][] arr : hash){
-                if (Arrays.deepEquals(temp, arr)){
-                    equals = true;
+            boolean alreadyseen = false;
+            for (int[][] hasharray : hash){
+                if (Arrays.deepEquals(CurrentBoard, hasharray)){
+                    alreadyseen = true;
                 }
             }
-            if (!equals){
-                hash.add(temp);
+            if (!alreadyseen){
+                hash.add(CurrentBoard);
                 qq.add(evaluating);
             }
         }
-        return hash;
+
+        acr.hash=hash;
+        acr.qq=qq;
+        return acr;
     }
 }
