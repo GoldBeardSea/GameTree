@@ -43,7 +43,8 @@ function drawboard(board) {
       if (board[row][column] === 1) {
         newtd.style.backgroundColor="red";
       } else if (board[row][column] === -1) {
-        newtd.style.backgroundColor="black";
+        newtd.style.backgroundColor="blue";
+
       }
     }
   }
