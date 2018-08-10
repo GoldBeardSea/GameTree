@@ -239,4 +239,12 @@ public class Application {
             return mv;
         }
     }
+
+    @GetMapping("/accessdenied")
+    public String acessdenied(HttpServletRequest request, Model model) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("acessdenied");
+
+        return "accessdenied";
+    }
 }
