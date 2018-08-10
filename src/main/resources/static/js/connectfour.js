@@ -5,11 +5,11 @@ var button = document.getElementById("NewGame");
 button.addEventListener("click", newgameclicked);
 
 function newgameclicked(event) {
-  $.ajax('http://localhost:8080/newgame', {
+  $.ajax('/newgame', {
     method: 'POST',
     data: {
     }
-  }).then(window.location.href="http://localhost:8080/play")
+  }).then(window.location.href="/play")
 }
 
 
@@ -18,7 +18,7 @@ function tableclicked(event) {
   let column = id.charAt(1)-1;
   console.log(column);
 
-  $.ajax('http://localhost:8080/play?' + $.param({column: column}), {
+  $.ajax('/play?' + $.param({column: column}), {
     method: 'POST',
     data: {
         column: column
