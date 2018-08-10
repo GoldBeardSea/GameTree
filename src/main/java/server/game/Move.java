@@ -1,5 +1,6 @@
 package server.game;
 
+import static server.game.GameEngine.gameArray;
 import static server.game.GameEngine.playing;
 
 public class Move {
@@ -53,7 +54,17 @@ public class Move {
     }
 
     public static void chooseRandomMove() {
-        int column = (int) Math.floor(Math.random() * 7);
+        double sum =0;
+        int column = -2;
+        boolean legalmove=false;
+        while (!legalmove) {
+
+            for (int i = 0; i < 3; i++) {
+                sum += Math.random();
+            }
+            column = (int) Math.floor(sum * 7 / 3);
+            if (gameArray[5][column]==0) legalmove=true;
+        }
         GameMethods.MakeMove(column, GameEngine.gameArray);
         int row = -2;
         for (int i = 5; i > -1; i--) {
