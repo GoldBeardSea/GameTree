@@ -2,7 +2,6 @@ package server;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import server.game.*;
 import server.models.UserModel;
 import server.repositories.UserDatabaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ import static server.game.GameEngine.computermove;
 import static server.game.GameEngine.gameArray;
 import static server.game.Move.chooseRandomMove;
 import static server.game.Move.playermove;
+import static server.game.GameEngine.playing;
 
 @Controller
 @SpringBootApplication
@@ -96,6 +96,7 @@ public class Application {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("play");
         mv.addObject("gameArray", gameArray);
+        mv.addObject("playing", playing);
 
         return mv;
     }
@@ -104,42 +105,33 @@ public class Application {
     @ResponseBody
     public int[][] newmove(HttpServletRequest request,
                                 @RequestParam int column) {
-        HttpSession session = request.getSession();
-        UserModel user = (UserModel) session.getAttribute("user");
 
-        int row = playermove(gameArray, column);
-        boolean isPlayerWin = CheckWin.look(GameEngine.gameArray, row, column);
-        if (isPlayerWin) {
-            System.out.println("Game Over, players wins");
-        }
 
-        System.out.println();
-        computermove = !computermove;
+        if (playing) {
+            playermove(gameArray, column);
+            System.out.println("playing = " + playing);
+            if (!playing) {
 
-        row = chooseRandomMove();
-        boolean isPCWin = CheckWin.look(GameEngine.gameArray, row, 3);
-
-        if (isPCWin) {
-
-            System.out.println("Game Over, PC win");
-            int[][] empty = {{}};
-            return empty;
+            }
         }
 
         computermove = !computermove;
-
-        recordWin(user, isPlayerWin, isPCWin);
-
+//        pcmove(gameArray);
+        if (playing) {
+            chooseRandomMove();
+            System.out.println("playing = " + playing);
+        }
+        computermove = !computermove;
         return gameArray;
     }
 
-//    private void userWins(UserModel user) {
-//        user.wins++;
-//    }
-//
-//    private void userLoss(UserModel user) {
-//        user.losses++;
-//    }
+    private void userWins(UserModel user) {
+        user.wins++;
+    }
+
+    private void userLoss(UserModel user) {
+        user.losses++;
+    }
 
     private void recordWin(UserModel user, boolean isPlayerwin, boolean isPCWin) {
         if (isPlayerwin) {
@@ -164,7 +156,9 @@ public class Application {
         }
         System.out.println("hit home controller");
         Date date = new Date();
-        model.addAttribute("currenttime", date.toString());
+        model.addAttribute("currenttime", date.toString())
+        ;
+
 
         List<UserModel> users = userDatabaseRepository.findAll();
         Collections.sort(users);

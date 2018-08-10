@@ -1,5 +1,7 @@
 package server.game;
 
+import static server.game.GameEngine.playing;
+
 public class Move {
 
     public static void main(String[] args) {
@@ -13,11 +15,28 @@ public class Move {
 
         ar = GameMethods.MakeMove(3,ar);
 
-        pcmove(ar);
+//        pcmove(ar);
     }
 
-    public static int pcmove(int[][] gameArray) {
-        int column = BFS.search(gameArray);
+//    public static void pcmove(int[][] gameArray) {
+//       int column = BFS2.search(gameArray);
+//        GameMethods.MakeMove(column, GameEngine.gameArray);
+//        int row = -2;
+//        for (int i = 5; i > -1; i--) {
+//            if (GameEngine.gameArray[i][column] != 0) {
+//                row = i;
+//                i = -100;
+//            }
+//        }
+//        boolean wins = CheckWin.look(GameEngine.gameArray, row, column);
+//        if (wins) {
+//            System.out.println("Game Over, PC win");
+//            playing=false;
+//        }
+//
+//    }
+
+    public static void playermove(int[][] gameArray, int column) {
         GameMethods.MakeMove(column, GameEngine.gameArray);
         int row = -2;
         for (int i = 5; i > -1; i--) {
@@ -26,22 +45,14 @@ public class Move {
                 i = -100;
             }
         }
-        return row;
-    }
-
-    public static int playermove(int[][] gameArray, int column) {
-        GameMethods.MakeMove(column, GameEngine.gameArray);
-        int row = -2;
-        for (int i = 5; i > -1; i--) {
-            if (GameEngine.gameArray[i][column] != 0) {
-                row = i;
-                i = -100;
-            }
+        boolean wins = CheckWin.look(GameEngine.gameArray, row, column);
+        if (wins) {
+            System.out.println("Game Over, user win");
+            playing=false;
         }
-        return row;
     }
 
-    public static int chooseRandomMove() {
+    public static void chooseRandomMove() {
         int column = (int) Math.floor(Math.random() * 7);
         GameMethods.MakeMove(column, GameEngine.gameArray);
         int row = -2;
@@ -51,6 +62,10 @@ public class Move {
                 i = -100;
             }
         }
-        return row;
+        boolean wins = CheckWin.look(GameEngine.gameArray, row, column);
+        if (wins) {
+            System.out.println("Game Over, PC win");
+            playing=false;
+        }
     }
 }
