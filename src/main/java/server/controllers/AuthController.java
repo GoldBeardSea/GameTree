@@ -73,6 +73,7 @@ public class AuthController {
             mv.addObject("error", "Login not found. Choose another.");
         } else {
             boolean isCorrectPassword = user.checkPassword(password);
+            System.out.println("is password correct? " + isCorrectPassword);
             if(isCorrectPassword) {
                 mv.setViewName("loggedin");
                 mv.addObject("login", login);
